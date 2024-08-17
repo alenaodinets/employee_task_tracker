@@ -8,7 +8,7 @@ from tasks.views import TaskListAPIView, ImportantTaskListAPIView, TaskCreateAPI
 app_name = TasksConfig.name
 
 urlpatterns = [
-    path("", TaskListAPIView.as_view(), name="task_list"),
+    path("tasks/", TaskListAPIView.as_view(), name="task_list"),
     path("important/", ImportantTaskListAPIView.as_view(), name="important_task_list"),
     path("create/", TaskCreateAPIView.as_view(), name="task_create"),
     path("<int:pk>/", TaskRetrieveAPIView.as_view(), name="task_retrieve"),
