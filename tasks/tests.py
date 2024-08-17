@@ -1,4 +1,3 @@
-from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -11,12 +10,12 @@ from users.models import User
 class TaskTestCase(APITestCase):
 
     def setUp(self):
-        self.user = User.objects.create(email="testuser@mail.ru")
+        self.user = User.objects.create(email="admin@sky.pro")
         self.employee = Employee.objects.create(
-            full_name="Иванов Иван Иванович", position="инженер"
+            full_name="Одинец Алена Владимировна", position="Мастер"
         )
         self.task = Task.objects.create(
-            title="TestTask1",
+            task_name="TestTask1",
             start_date="2024-09-10",
             end_date="2024-09-10",
             is_important=True,
@@ -28,12 +27,12 @@ class TaskTestCase(APITestCase):
         response = self.client.get(url)
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(data["title"], self.task.title)
+        self.assertEqual(data["task_name"], self.task.title)
 
     def test_task_create(self):
         url = reverse("tasks:task_create")
         data = {
-            "title": "Test2Task",
+            "task_name": "Test2Task",
             "start_date": "2024-09-10",
             "end_date": "2024-09-10",
             "employee": self.employee.id,
@@ -44,11 +43,11 @@ class TaskTestCase(APITestCase):
 
     def test_task_update(self):
         url = reverse("tasks:task_update", args=(self.task.pk,))
-        data = {"title": "AnotherTask"}
+        data = {"task_name": "AnotherTask"}
         response = self.client.patch(url, data)
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(data["title"], "AnotherTask")
+        self.assertEqual(data["task_name"], "AnotherTask")
 
     def test_task_destroy(self):
         url = reverse("tasks:task_delete", args=(self.task.pk,))
@@ -65,7 +64,7 @@ class TaskTestCase(APITestCase):
             {
                 "id": self.task.pk,
                 "term_days": 0,
-                "title": "TestTask1",
+                "task_name": "TestTask1",
                 "start_date": "2024-09-10",
                 "end_date": "2024-09-10",
                 "status": "not_started",
