@@ -1,9 +1,20 @@
 from django.urls import path
 
 from tasks.apps import TasksConfig
-from tasks.views import TaskListAPIView, ImportantTaskListAPIView, TaskCreateAPIView, TaskRetrieveAPIView, \
-    TaskUpdateAPIView, TaskDestroyAPIView, EmployeeListAPIView, EmployeeActiveTasksListAPIView, EmployeeCreateAPIView, \
-    EmployeeRetrieveAPIView, EmployeeUpdateAPIView, EmployeeDestroyAPIView
+from tasks.views import (
+    TaskListAPIView,
+    ImportantTaskListAPIView,
+    TaskCreateAPIView,
+    TaskRetrieveAPIView,
+    TaskUpdateAPIView,
+    TaskDestroyAPIView,
+    EmployeeListAPIView,
+    EmployeeActiveTasksListAPIView,
+    EmployeeCreateAPIView,
+    EmployeeRetrieveAPIView,
+    EmployeeUpdateAPIView,
+    EmployeeDestroyAPIView,
+)
 
 app_name = TasksConfig.name
 

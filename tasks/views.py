@@ -1,10 +1,21 @@
 from django.db.models import Q
 from django.shortcuts import render
 from rest_framework.filters import SearchFilter
-from rest_framework.generics import ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView, CreateAPIView
+from rest_framework.generics import (
+    ListAPIView,
+    RetrieveAPIView,
+    UpdateAPIView,
+    DestroyAPIView,
+    CreateAPIView,
+)
 
 from tasks.models import Task, Employee
-from tasks.serializer import TaskSerializer, ImportantTaskSerializer, EmployeeSerializer, EmployeeActiveTasksSerializer
+from tasks.serializer import (
+    TaskSerializer,
+    ImportantTaskSerializer,
+    EmployeeSerializer,
+    EmployeeActiveTasksSerializer,
+)
 
 
 # Create your views here.
