@@ -10,7 +10,7 @@ Employee_task_tracker
 
 python 3.12
 
-Django 5.1
+Django 5.0.6
 
 PostgreSQL
 
