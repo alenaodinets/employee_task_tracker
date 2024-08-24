@@ -1,6 +1,6 @@
 from django.urls import reverse
 from rest_framework import status
-from rest_framework.test import APITestCase
+from rest_framework.test import APITestCase, force_authenticate
 
 from tasks.models import Task, Employee
 from users.models import User
@@ -10,7 +10,7 @@ from users.models import User
 class TaskTestCase(APITestCase):
 
     def setUp(self):
-        self.user = User.objects.create(email="admin@sky.pro")
+        self.user = User.objects.create(email="alenatest@mail.ru")
         self.employee = Employee.objects.create(
             full_name="Одинец Алена Владимировна", position="Мастер"
         )
@@ -21,13 +21,14 @@ class TaskTestCase(APITestCase):
             is_important=True,
             employee=Employee.objects.get(pk=self.employee.id),
         )
+        self.client.force_authenticate(self.user)
 
     def test_task_retrieve(self):
         url = reverse("tasks:task_retrieve", args=(self.task.pk,))
         response = self.client.get(url)
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(data["task_name"], self.task.title)
+        self.assertEqual(data["task_name"], self.task.task_name)
 
     def test_task_create(self):
         url = reverse("tasks:task_create")

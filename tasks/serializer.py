@@ -42,8 +42,8 @@ class TaskSerializer(ModelSerializer):
         model = Task
         fields = "__all__"
         validators = [
-            TitleValidator(field="title"),
-            UniqueTogetherValidator(fields=["title"], queryset=Task.objects.all()),
+            TitleValidator(field="task_name"),
+            UniqueTogetherValidator(fields=["task_name"], queryset=Task.objects.all()),
         ]
 
 

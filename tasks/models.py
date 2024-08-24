@@ -1,5 +1,8 @@
 from django.db import models
 
+from config.settings import AUTH_USER_MODEL
+
+
 # Create your models here.
 
 
@@ -55,7 +58,13 @@ class Task(models.Model):
     comments = models.TextField(
         null=True, blank=True, verbose_name="Комментарий к задаче"
     )
-    owner = models.TextField(null=True, blank=True, verbose_name="Создатель")
+    owner = models.ForeignKey(
+        AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Создатель",
+    )
     is_active = models.BooleanField(
         default=True, verbose_name="Признак активности задачи"
     )
